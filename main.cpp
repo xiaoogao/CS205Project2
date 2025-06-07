@@ -11,7 +11,7 @@
 
 // - Iranian Churn Dataset Results:
 // - Forward: Feature Subset: <1,2,3,4,5,6,7>, Acc: 93.4%
-// - Backward: Feature Subset: <>, Acc: 78.0112%
+// - Backward: Feature Subset: <2,3,4,5,6,7,8,9>, Acc: 95.7%
 
 
 #include <iostream>
@@ -63,7 +63,10 @@ private:
     double EuclideanDistance(const vector<double>& a, const vector<double>& b) const {
         double sum = 0.0;
         for (int index : FeatureSet) {
-            sum += (a[index] - b[index]) * (a[index] - b[index]);
+            if (index > sizeof(a)) {
+                cout << index << endl;
+            }
+            sum += (a[index-1] - b[index-1]) * (a[index-1] - b[index-1]);
         }
         return sqrt(sum);
     }
@@ -165,7 +168,7 @@ public:
 
     void backwardElimination() {
         set<int> currentFeatures;
-        for (int feature = 1; feature <= totalFeatures; ++feature) {
+        for (int feature = 0; feature < totalFeatures; ++feature) {
             currentFeatures.insert(feature);
         }
 
