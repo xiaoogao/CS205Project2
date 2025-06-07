@@ -2,16 +2,16 @@
 // - DatasetID: small_data_39, large_data_31
 
 // - Small Dataset Results:
-// - Forward: Feature Subset: <1,10>, Acc: 96.2%
-// - Backward: Feature Subset: <4,7, 10>, Acc: 86.4%
+// - Forward: Feature Subset: <2,11>, Acc: 96.2%
+// - Backward: Feature Subset: <2,3,11>, Acc: 96.2%
 
 // - Large Dataset Results:
-// - Forward: Feature Subset: <32, 44>, Acc: 97.1%
-// - Backward: Feature Subset: <3,5,6,9,11,12,13,14,17,22,23,24,25,26,29,31,32,34,35,36,37,41,45,46,47,48,49,50,51>, Acc: 77.7%
+// - Forward: Feature Subset: <33, 45>, Acc: 97.1%
+// - Backward: Feature Subset: <2,4,5,6,12,14,15,17,20,22,25,26,30,32,36,39,42,43,46,47,49>, Acc: 78.8%
 
 // - Iranian Churn Dataset Results:
-// - Forward: Feature Subset: <1,2,3,4,5,6,7>, Acc: 93.4%
-// - Backward: Feature Subset: <2,3,4,5,6,7,8,9>, Acc: 95.7%
+// - Forward: Feature Subset: <1,3,4,5,6,7,8>, Acc: 96.98%
+// - Backward: Feature Subset: <1,3,4,5,6,7,8>, Acc: 96.98%
 
 
 #include <iostream>
@@ -63,8 +63,8 @@ private:
     double EuclideanDistance(const vector<double>& a, const vector<double>& b) const {
         double sum = 0.0;
         for (int index : FeatureSet) {
-            if (index > sizeof(a)) {
-                cout << index << endl;
+            if (index > a.size()-1) {
+                cout << index << " " << sizeof(a) << endl;
             }
             sum += (a[index-1] - b[index-1]) * (a[index-1] - b[index-1]);
         }
